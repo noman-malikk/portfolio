@@ -1,0 +1,128 @@
+Noman Ali Malik - Portfolio
+
+# sidebar
+
+alt = Noman Ali Malik
+Noman Ali Malik
+Front-End Developer & IT Support Specialist
+
+Show Contacts
+
+Email
+noumanmalik970@gmail.com
+
+Phone
++44 7761 256842
+
+Location
+London, United Kingdom
+
+LinkedIn
+https://www.linkedin.com/in/noman-ali-malik
+
+GitHub
+https://github.com/noman-malikk
+
+# navbar
+
+About
+Resume
+Portfolio
+Certifications
+Contact
+
+# about
+
+About me
+
+I'm Noman Ali Malik, a front-end developer and IT support specialist based in London, United Kingdom. I enjoy building clean, responsive interfaces and solving problems with practical, user-focused solutions.
+
+My core stack includes HTML5, CSS3 (SASS), Tailwind/Bootstrap, JavaScript, React, TypeScript, and Git. I also have experience with Jira, AWS, Node.js, Express, and MongoDB.
+
+## service
+
+What i'm doing
+
+Front-end development
+Responsive websites and web apps using HTML, CSS, JavaScript, React, and TypeScript.
+
+UI implementation
+Turning designs into accessible, reusable components with Tailwind, Bootstrap, and SASS.
+
+MERN projects
+Full-stack development with Node.js, Express, MongoDB, and modern front-end tooling.
+
+IT support
+Troubleshooting, help desk support, and IT hardware support.
+
+# resume
+
+Resume
+
+Education
+
+Anglia Ruskin University
+September 2022 — November 2023
+MSc Computer Science (Computer and Information Sciences and Support Services).
+
+University of Agriculture, Peshawar
+March 2016 — April 2020
+Bachelor’s of Computer Science.
+
+University of Peshawar
+2016 — 2020
+Bachelor’s of Computer Science (coursework includes programming languages, computer architecture, operating systems, data communications, and web development).
+
+Experience
+
+Frontend Developer — SMSAMI
+January 2022 — Present
+Building responsive UIs and shipping front-end features.
+
+Web Developer — Itechera solutions
+September 2021 — February 2022
+Worked with HTML5, CSS3, JavaScript, React, Node.js, and DevOps tooling.
+
+Customer Relations Specialist — Sybrid Private Limited
+April 2020 — September 2021
+Customer support and issue resolution in a fast-paced environment.
+
+My skills
+
+Front-end foundations — HTML5, CSS3/SASS, Tailwind, Bootstrap, responsive and accessible UI.
+JavaScript & TypeScript — ES6+, React, hooks, state management, and component-driven development.
+Backend & APIs — Node.js, Express, RESTful APIs, MongoDB, and integration with front-end apps.
+Tooling & collaboration — Git/GitHub, Jira, CI/CD basics, and structured code reviews.
+Support & ops — IT support, troubleshooting, help desk workflows, and AWS familiarity.
+
+# portfolio
+
+Portfolio
+
+Categories
+All
+Front-End
+Full Stack
+Blockchain
+
+Projects
+MERN App — Full Stack — https://github.com/noman-malikk/MERN-APP
+E-voting system (blockchain) — Blockchain — https://github.com/noman-malikk/E-voting_system_block-chain
+Wealth Bridge — Front-End — https://github.com/noman-malikk/wealth-bridge
+GitHub profile — Front-End — https://github.com/noman-malikk/noman-malikk
+
+# certifications
+
+Certifications
+
+Technical Support Fundamentals
+
+Top skills
+Express.js • Help Desk Support • IT Hardware Support
+
+# contact
+
+Contact
+
+Map location
+London, United Kingdom

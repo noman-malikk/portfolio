@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noman Ali Malik - Portfolio</title>
+
+  <link rel="icon" href="./assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main>
+    <div data-include="./partials/sidebar.html"></div>
+    <div data-include="./partials/main-content.html"></div>
+  </main>
+
+  <script>
+    (async function loadAndInit() {
+      if (location.protocol === "file:") {
+        console.warn("Serve the site via http:// (e.g., python3 -m http.server) so includes load correctly.");
+      }
+
+      const includes = document.querySelectorAll("[data-include]");
+      await Promise.all(Array.from(includes).map(async (el) => {
+        const src = el.getAttribute("data-include");
+        try {
+          const res = await fetch(src);
+          if (!res.ok) throw new Error(res.statusText);
+          el.outerHTML = await res.text();
+        } catch (err) {
+          console.error("Include load failed:", src, err);
+          el.innerHTML = "<p style='color:#f87171;padding:12px;'>Failed to load content. Please serve the site via http:// or check file paths.</p>";
+        }
+      }));
+
+      // load main script after content is injected
+      const script = document.createElement("script");
+      script.src = "./assets/js/script.js";
+      document.body.appendChild(script);
+    })().catch(err => console.error("Include load failed:", err));
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
