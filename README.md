@@ -35,6 +35,13 @@ Base path is computed automatically in `astro.config.ts`:
 
 - User site repo (e.g. `username.github.io`) -> base is `/`
 - Project pages repo (e.g. `my-portfolio`) -> base is `/my-portfolio/`
+- Custom domain (`SITE_URL` not on `github.io` or a `public/CNAME` file) -> base is `/`
+
+If you need a specific base path (rare for custom domains), set `SITE_BASE`:
+
+```bash
+SITE_BASE=/portfolio/ npm run build
+```
 
 For local builds that match GitHub Pages paths, set the repo slug:
 
@@ -42,7 +49,7 @@ For local builds that match GitHub Pages paths, set the repo slug:
 GITHUB_REPOSITORY=owner/repo npm run build
 ```
 
-To update the sitemap host, set `SITE_URL` or provide the `GITHUB_REPOSITORY` environment variable when building in CI.
+To update the sitemap host and OpenGraph URLs, set `SITE_URL` (for example `https://nomanmalik.co.uk`) or provide the `GITHUB_REPOSITORY` environment variable when building in CI. The workflow reads `SITE_URL` and `SITE_BASE` from GitHub repo variables (`Settings -> Secrets and variables -> Actions`). Custom domains are also supported via `public/CNAME`.
 
 ## Project structure
 
