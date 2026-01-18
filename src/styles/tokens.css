@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --color-bg: #f6f2ec;
+  --color-surface: #ffffff;
+  --color-surface-alt: #efe9e0;
+  --color-text: #1e1b16;
+  --color-muted: #5f5a52;
+  --color-accent: #0f766e;
+  --color-accent-strong: #0b4f4b;
+  --color-highlight: #f3c46a;
+  --color-border: #d6cfc6;
+  --color-ink-soft: rgba(30, 27, 22, 0.08);
+  --shadow-soft: 0 20px 50px rgba(17, 20, 29, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 88px;
+  --max-width: 1120px;
+  --transition-fast: 150ms ease;
+  --transition-slow: 300ms ease;
+  --focus-ring: 0 0 0 3px rgba(15, 118, 110, 0.35);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #12110f;
+  --color-surface: #1c1a16;
+  --color-surface-alt: #25221c;
+  --color-text: #f7f3ed;
+  --color-muted: #b3aaa1;
+  --color-accent: #4bd2c5;
+  --color-accent-strong: #3ea9a0;
+  --color-highlight: #f0bd5e;
+  --color-border: #332f28;
+  --color-ink-soft: rgba(247, 243, 237, 0.08);
+  --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.4);
+  --focus-ring: 0 0 0 3px rgba(75, 210, 197, 0.35);
+}
+
+[data-reduced-motion='true'] * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+[data-reduced-motion='true'] {
+  scroll-behavior: auto;
+}

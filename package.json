@@ -1,0 +1,27 @@
+{
+  "name": "noman-ali-malik-portfolio",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node ./scripts/generate-sitemap.mjs && astro build",
+    "preview": "astro preview",
+    "lint": "eslint . --ext .ts,.js",
+    "typecheck": "astro check",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.2.5",
+    "astro": "^5.16.11",
+    "svelte": "^5.46.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/node": "^25.0.9",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.5.4"
+  }
+}

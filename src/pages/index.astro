@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LayoutPlayground from '../components/LayoutPlayground.svelte';
+import TrustDemo from '../components/TrustDemo.svelte';
+import MaterialGallery from '../components/MaterialGallery.svelte';
+import PerformanceLab from '../components/PerformanceLab.svelte';
+import FlowResilience from '../components/FlowResilience.svelte';
+import SkillClusters from '../components/SkillClusters.svelte';
+import ComponentSandbox from '../components/ComponentSandbox.svelte';
+import CommandPalette from '../components/CommandPalette.svelte';
+import AccessibilityInspector from '../components/AccessibilityInspector.svelte';
+import CopyEmailButton from '../components/CopyEmailButton.svelte';
+import { profile } from '../data/profile';
+
+type CommandAction = {
+  label: string;
+  type: 'section' | 'link' | 'toggle-theme' | 'toggle-motion';
+  target?: string;
+};
+
+const description =
+  'Portfolio of Noman Ali Malik, a front-end engineer focused on responsive, user-centric web experiences and UI craft.';
+
+const commandActions: CommandAction[] = [
+  { label: 'Go to Home', type: 'section', target: '#home' },
+  { label: 'Go to UI Craft Lab', type: 'section', target: '#lab' },
+  { label: 'Go to Experience', type: 'section', target: '#experience' },
+  { label: 'Go to Projects', type: 'section', target: '#projects' },
+  { label: 'Go to Skills', type: 'section', target: '#skills' },
+  { label: 'Go to Contact', type: 'section', target: '#contact' },
+  { label: 'Open GitHub', type: 'link', target: `https://${profile.github}` },
+  { label: 'Open LinkedIn', type: 'link', target: `https://${profile.linkedin}` },
+  { label: 'Toggle Theme', type: 'toggle-theme' },
+  { label: 'Toggle Reduced Motion', type: 'toggle-motion' }
+];
+---
+
+<BaseLayout title={`${profile.name} | ${profile.title}`} description={description}>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-mark">UI Craft Lab</span>
+        <span class="brand-name">{profile.name}</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn btn-ghost command-trigger" data-command-open>
+        Command <span class="kbd">Ctrl + K</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home">
+      <div class="container hero">
+        <div>
+          <p class="eyebrow">Front-end Engineer - London</p>
+          <h1 class="hero-title">Front-end Engineer building responsive, user-centric experiences.</h1>
+          <p class="hero-subtitle">{profile.summary}</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projects">Projects</a>
+            <a class="btn btn-ghost" href="#experience">Experience</a>
+            <a class="btn btn-ghost" href={`https://${profile.github}`} target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn btn-ghost" href={`https://${profile.linkedin}`} target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div class="hero-badges">
+            <span class="badge">{profile.title}</span>
+            <span class="badge">{profile.location}</span>
+          </div>
+        </div>
+        <div class="card hero-lab">
+          <div class="eyebrow">Layout Playground</div>
+          <h3>Responsive layout morph</h3>
+          <p class="muted">
+            Drag the slider to test layout shifts across breakpoints. The panel reveals the active CSS
+            rules and layout intent.
+          </p>
+          <LayoutPlayground client:load />
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="container">
+        <h2 class="section-title">UI Craft Lab</h2>
+        <p class="section-lede">
+          A set of small, production-style demos that highlight systems thinking: component states,
+          accessibility, and resilience under changing inputs.
+        </p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Component Sandbox</h3>
+            <p class="muted">Toggle states and inspect the CSS + props panel as you experiment.</p>
+            <ComponentSandbox client:load />
+          </div>
+          <div class="card">
+            <h3>Accessibility Inspector</h3>
+            <p class="muted">
+              Use the floating widget to reveal focus rings, highlight heading hierarchy, and run a
+              quick checklist on this page.
+            </p>
+            <div class="panel">
+              <strong>Try it:</strong> open the inspector at the lower-right and toggle "Headings".
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-lede">
+          Delivered responsive SaaS and e-commerce experiences, focusing on performance, clarity,
+          and consistent delivery in cross-functional teams.
+        </p>
+        <div class="timeline">
+          {profile.experience.map((role) => (
+            <div class="timeline-item">
+              <details>
+                <summary>
+                  <span>{role.role} - {role.company}</span>
+                  <span class="muted">{role.range}</span>
+                </summary>
+                <p class="muted">{role.location}</p>
+                <div class="grid-2">
+                  <div>
+                    <h4>Impact</h4>
+                    <ul>
+                      {role.impact.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="panel">
+                    <h4>What I focused on</h4>
+                    <ul>
+                      {role.focus.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-lede">
+          Featured build plus UI micro-case studies that mirror the production constraints I've
+          shipped with.
+        </p>
+        <div class="card">
+          <div class="eyebrow">Featured Project</div>
+          <h3>{profile.project.name}</h3>
+          <p class="muted">{profile.project.description}</p>
+          <div class="tag-row">
+            {profile.project.stack.map((item) => (
+              <span class="tag">{item}</span>
+            ))}
+          </div>
+          <TrustDemo client:load />
+          <div class="cta-row">
+            <a class="btn btn-ghost" href={profile.project.linkUrl} target="_blank" rel="noreferrer">
+              {profile.project.linkLabel}
+            </a>
+          </div>
+        </div>
+
+        <div class="micro-case-grid">
+          <div class="card">
+            <h3>{profile.microCaseStudies[0].title}</h3>
+            <p class="muted">{profile.microCaseStudies[0].summary}</p>
+            <MaterialGallery client:load />
+            <p class="muted case-note">{profile.microCaseStudies[0].note}</p>
+          </div>
+          <div class="card">
+            <h3>{profile.microCaseStudies[1].title}</h3>
+            <p class="muted">{profile.microCaseStudies[1].summary}</p>
+            <PerformanceLab client:load />
+            <p class="muted case-note">{profile.microCaseStudies[1].note}</p>
+          </div>
+          <div class="card">
+            <h3>{profile.microCaseStudies[2].title}</h3>
+            <p class="muted">{profile.microCaseStudies[2].summary}</p>
+            <FlowResilience client:load />
+            <p class="muted case-note">{profile.microCaseStudies[2].note}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-lede">
+          A structured capability map across frontend engineering, UI systems, backend integration,
+          and delivery practices.
+        </p>
+        <SkillClusters client:load clusters={profile.skills} />
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="card">
+          <h3>{profile.education.degree}</h3>
+          <p class="muted">{profile.education.school} - {profile.education.location}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container split">
+        <div>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-lede">
+            Looking to build a responsive, high-performance experience? Let's collaborate on your
+            next interface.
+          </p>
+          <div class="panel">
+            <div class="copy-inline">
+              <span>Email</span>
+              <strong>{profile.email}</strong>
+            </div>
+            <p class="muted">Phone: {profile.phone}</p>
+            <p class="muted">LinkedIn: {profile.linkedin}</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Quick actions</h3>
+          <CopyEmailButton client:load email={profile.email} />
+          <div class="cta-row">
+            <a class="btn btn-primary" href={`mailto:${profile.email}`}>Send an email</a>
+            <a class="btn btn-ghost" href={`https://${profile.linkedin}`} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <span>(c) {new Date().getFullYear()} {profile.name}</span>
+        <span class="muted">Built with Astro - UI Craft Lab theme</span>
+        <span class="muted">Deploy-ready for GitHub Pages</span>
+      </div>
+    </div>
+  </footer>
+
+  <AccessibilityInspector client:load />
+  <CommandPalette client:load actions={commandActions} />
+</BaseLayout>
