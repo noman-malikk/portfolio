@@ -83,6 +83,7 @@
   .playground {
     display: grid;
     gap: 20px;
+    min-width: 0;
   }
 
   .controls {
@@ -91,12 +92,13 @@
     gap: 16px;
     align-items: center;
     justify-content: space-between;
+    min-width: 0;
   }
 
   .slider {
     display: grid;
     gap: 8px;
-    min-width: 220px;
+    min-width: min(220px, 100%);
     flex: 1;
   }
 
@@ -159,6 +161,7 @@
   .canvas {
     overflow-x: auto;
     padding-bottom: 6px;
+    max-width: 100%;
   }
 
   .frame {
@@ -190,6 +193,9 @@
     margin-left: auto;
     font-size: 0.8rem;
     color: #605c56;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .frame-body {
@@ -209,6 +215,7 @@
     border-radius: 999px;
     background: #efe9e0;
     font-size: 0.75rem;
+    white-space: nowrap;
   }
 
   .tiles {
@@ -263,5 +270,18 @@
   :global([data-theme='dark']) .tile {
     background: #1c1a16;
     border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @media (max-width: 520px) {
+    .breakpoint {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .tooltip {
+      left: auto;
+      right: 0;
+      width: min(240px, calc(100vw - 48px));
+    }
   }
 </style>

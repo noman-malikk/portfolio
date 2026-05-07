@@ -6,6 +6,7 @@ export const profile = {
   email: 'noumanmalik970@gmail.com',
   linkedin: 'linkedin.com/in/noman-ali-malik',
   github: 'github.com/noman-malik',
+  portrait: '/noman.jpeg',
   summary:
     'Creative front-end developer focused on responsive, user-centric web experiences; strong problem-solving, attention to detail, adaptability, teamwork.',
   experience: [

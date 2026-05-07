@@ -19,11 +19,13 @@ type CommandAction = {
 };
 
 const description =
-  'Portfolio of Noman Ali Malik, a front-end engineer focused on responsive, user-centric web experiences and UI craft.';
+  'Portfolio of Noman Ali Malik, a front-end engineer in London building polished, responsive, high-performance interfaces.';
+const base = import.meta.env.BASE_URL;
+const portraitSrc = `${base}${profile.portrait.replace(/^\/+/, '')}`;
 
 const commandActions: CommandAction[] = [
   { label: 'Go to Home', type: 'section', target: '#home' },
-  { label: 'Go to UI Craft Lab', type: 'section', target: '#lab' },
+  { label: 'Go to Workbench', type: 'section', target: '#workbench' },
   { label: 'Go to Experience', type: 'section', target: '#experience' },
   { label: 'Go to Projects', type: 'section', target: '#projects' },
   { label: 'Go to Skills', type: 'section', target: '#skills' },
@@ -33,134 +35,161 @@ const commandActions: CommandAction[] = [
   { label: 'Toggle Theme', type: 'toggle-theme' },
   { label: 'Toggle Reduced Motion', type: 'toggle-motion' }
 ];
+
+const heroStats = [
+  { value: '3+', label: 'Years shipping interfaces' },
+  { value: '2', label: 'Product domains' },
+  { value: 'UI', label: 'Systems + performance' }
+];
 ---
 
 <BaseLayout title={`${profile.name} | ${profile.title}`} description={description}>
   <header class="site-header">
     <div class="container nav">
-      <div class="brand">
-        <span class="brand-mark">UI Craft Lab</span>
-        <span class="brand-name">{profile.name}</span>
-      </div>
+      <a class="brand" href="#home" aria-label={`${profile.name} home`}>
+        <span class="brand-mark">NM</span>
+        <span>
+          <span class="brand-name">{profile.name}</span>
+          <span class="brand-role">{profile.title}</span>
+        </span>
+      </a>
       <nav class="nav-links" aria-label="Primary">
+        <a href="#workbench">Workbench</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="btn btn-ghost command-trigger" data-command-open>
-        Command <span class="kbd">Ctrl + K</span>
+      <button class="icon-command command-trigger" data-command-open aria-label="Open command palette">
+        <span>Command</span>
+        <span class="kbd">Ctrl K</span>
       </button>
     </div>
   </header>
 
   <main id="main">
-    <section id="home">
+    <section id="home" class="hero-section">
       <div class="container hero">
-        <div>
-          <p class="eyebrow">Front-end Engineer - London</p>
-          <h1 class="hero-title">Front-end Engineer building responsive, user-centric experiences.</h1>
+        <div class="hero-copy">
+          <p class="eyebrow">Available in {profile.location}</p>
+          <h1 class="hero-title">I build clean product interfaces with sharp frontend craft.</h1>
           <p class="hero-subtitle">{profile.summary}</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#projects">Projects</a>
-            <a class="btn btn-ghost" href="#experience">Experience</a>
+            <a class="btn btn-primary" href="#projects">View work</a>
+            <a class="btn btn-ghost" href={`mailto:${profile.email}`}>Email me</a>
             <a class="btn btn-ghost" href={`https://${profile.github}`} target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn btn-ghost" href={`https://${profile.linkedin}`} target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-          <div class="hero-badges">
-            <span class="badge">{profile.title}</span>
-            <span class="badge">{profile.location}</span>
           </div>
         </div>
-        <div class="card hero-lab">
-          <div class="eyebrow">Layout Playground</div>
-          <h3>Responsive layout morph</h3>
-          <p class="muted">
-            Drag the slider to test layout shifts across breakpoints. The panel reveals the active CSS
-            rules and layout intent.
-          </p>
-          <LayoutPlayground client:load />
-        </div>
+
+        <aside class="portrait-panel" aria-label={`${profile.name} portrait and profile highlights`}>
+          <div class="portrait-wrap">
+            <img src={portraitSrc} alt={profile.name} class="portrait-image" loading="eager" />
+          </div>
+          <div class="portrait-caption">
+            <span>{profile.title}</span>
+            <strong>{profile.location}</strong>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container hero-strip" aria-label="Highlights">
+        {heroStats.map((stat) => (
+          <div class="stat">
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section id="lab">
-      <div class="container">
-        <h2 class="section-title">UI Craft Lab</h2>
+    <section id="workbench" class="section-band">
+      <div class="container section-head">
+        <p class="eyebrow">Interactive workbench</p>
+        <h2 class="section-title">Frontend decisions you can poke at.</h2>
         <p class="section-lede">
-          A set of small, production-style demos that highlight systems thinking: component states,
-          accessibility, and resilience under changing inputs.
+          The site keeps the original interactive demos, but presents them as a sharper design and engineering
+          workbench for layout, components, accessibility, and resilience.
         </p>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Component Sandbox</h3>
-            <p class="muted">Toggle states and inspect the CSS + props panel as you experiment.</p>
-            <ComponentSandbox client:load />
-          </div>
-          <div class="card">
-            <h3>Accessibility Inspector</h3>
-            <p class="muted">
-              Use the floating widget to reveal focus rings, highlight heading hierarchy, and run a
-              quick checklist on this page.
-            </p>
-            <div class="panel">
-              <strong>Try it:</strong> open the inspector at the lower-right and toggle "Headings".
-            </div>
-          </div>
+      </div>
+      <div class="container workbench-grid">
+        <div class="feature-card feature-card-large">
+          <div class="card-kicker">01 / Layout</div>
+          <h3>Responsive layout morph</h3>
+          <p class="muted">
+            Drag the control to see how layout choices respond across viewport sizes and density changes.
+          </p>
+          <LayoutPlayground client:load />
+        </div>
+        <div class="feature-card">
+          <div class="card-kicker">02 / States</div>
+          <h3>Component sandbox</h3>
+          <p class="muted">Toggle UI states and inspect the component behavior.</p>
+          <ComponentSandbox client:load />
+        </div>
+        <div class="feature-card">
+          <div class="card-kicker">03 / Access</div>
+          <h3>Accessibility pass</h3>
+          <p class="muted">
+            Use the floating inspector to reveal focus rings, heading hierarchy, and quick review cues.
+          </p>
+          <div class="panel">Open the inspector at the lower-right and toggle the review layers.</div>
         </div>
       </div>
     </section>
 
     <section id="experience">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
+      <div class="container section-head">
+        <p class="eyebrow">Experience</p>
+        <h2 class="section-title">Product work with a practical delivery rhythm.</h2>
         <p class="section-lede">
-          Delivered responsive SaaS and e-commerce experiences, focusing on performance, clarity,
-          and consistent delivery in cross-functional teams.
+          Responsive SaaS and e-commerce interfaces, with a steady focus on performance, accessible states,
+          and clear collaboration.
         </p>
-        <div class="timeline">
-          {profile.experience.map((role) => (
-            <div class="timeline-item">
-              <details>
-                <summary>
-                  <span>{role.role} - {role.company}</span>
-                  <span class="muted">{role.range}</span>
-                </summary>
-                <p class="muted">{role.location}</p>
-                <div class="grid-2">
-                  <div>
-                    <h4>Impact</h4>
-                    <ul>
-                      {role.impact.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="panel">
-                    <h4>What I focused on</h4>
-                    <ul>
-                      {role.focus.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
+      </div>
+      <div class="container timeline">
+        {profile.experience.map((role) => (
+          <article class="timeline-item">
+            <details open>
+              <summary>
+                <span>{role.role} - {role.company}</span>
+                <span class="muted">{role.range}</span>
+              </summary>
+              <p class="muted">{role.location}</p>
+              <div class="grid-2">
+                <div>
+                  <h4>Impact</h4>
+                  <ul>
+                    {role.impact.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
                 </div>
-              </details>
-            </div>
-          ))}
-        </div>
+                <div class="panel">
+                  <h4>Focus areas</h4>
+                  <ul>
+                    {role.focus.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </article>
+        ))}
       </div>
     </section>
 
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
+    <section id="projects" class="section-band">
+      <div class="container section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section-title">Trust, speed, and interface systems.</h2>
         <p class="section-lede">
-          Featured build plus UI micro-case studies that mirror the production constraints I've
-          shipped with.
+          A featured blockchain project plus smaller UI case studies that reflect production constraints.
         </p>
-        <div class="card">
-          <div class="eyebrow">Featured Project</div>
+      </div>
+      <div class="container project-layout">
+        <article class="feature-card project-hero">
+          <div class="card-kicker">Featured project</div>
           <h3>{profile.project.name}</h3>
           <p class="muted">{profile.project.description}</p>
           <div class="tag-row">
@@ -174,93 +203,90 @@ const commandActions: CommandAction[] = [
               {profile.project.linkLabel}
             </a>
           </div>
-        </div>
+        </article>
 
-        <div class="micro-case-grid">
-          <div class="card">
+        <div class="case-stack">
+          <article class="feature-card">
             <h3>{profile.microCaseStudies[0].title}</h3>
             <p class="muted">{profile.microCaseStudies[0].summary}</p>
             <MaterialGallery client:load />
             <p class="muted case-note">{profile.microCaseStudies[0].note}</p>
-          </div>
-          <div class="card">
+          </article>
+          <article class="feature-card">
             <h3>{profile.microCaseStudies[1].title}</h3>
             <p class="muted">{profile.microCaseStudies[1].summary}</p>
             <PerformanceLab client:load />
             <p class="muted case-note">{profile.microCaseStudies[1].note}</p>
-          </div>
-          <div class="card">
+          </article>
+          <article class="feature-card">
             <h3>{profile.microCaseStudies[2].title}</h3>
             <p class="muted">{profile.microCaseStudies[2].summary}</p>
             <FlowResilience client:load />
             <p class="muted case-note">{profile.microCaseStudies[2].note}</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="skills">
-      <div class="container">
-        <h2 class="section-title">Skills</h2>
+      <div class="container section-head">
+        <p class="eyebrow">Capability map</p>
+        <h2 class="section-title">Skills grouped by how products actually get built.</h2>
         <p class="section-lede">
-          A structured capability map across frontend engineering, UI systems, backend integration,
-          and delivery practices.
+          Frontend engineering, UI systems, backend integration, cloud delivery, testing, and practical team habits.
         </p>
+      </div>
+      <div class="container">
         <SkillClusters client:load clusters={profile.skills} />
       </div>
     </section>
 
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="card">
-          <h3>{profile.education.degree}</h3>
-          <p class="muted">{profile.education.school} - {profile.education.location}</p>
+    <section id="education" class="education-strip">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Education</p>
+          <h2 class="section-title">{profile.education.degree}</h2>
+        </div>
+        <div class="panel">
+          <strong>{profile.education.school}</strong>
+          <p class="muted">{profile.education.location}</p>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container split">
+    <section id="contact" class="contact-section">
+      <div class="container contact-card">
         <div>
-          <h2 class="section-title">Contact</h2>
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Let’s build an interface people can trust.</h2>
           <p class="section-lede">
-            Looking to build a responsive, high-performance experience? Let's collaborate on your
-            next interface.
+            I’m open to frontend roles and projects where polished UI, maintainable code, and performance matter.
           </p>
-          <div class="panel">
-            <div class="copy-inline">
-              <span>Email</span>
-              <strong>{profile.email}</strong>
-            </div>
-            <p class="muted">Phone: {profile.phone}</p>
-            <p class="muted">LinkedIn: {profile.linkedin}</p>
+          <div class="contact-lines">
+            <span>{profile.email}</span>
+            <span>{profile.phone}</span>
+            <span>{profile.linkedin}</span>
           </div>
         </div>
-        <div class="card">
-          <h3>Quick actions</h3>
+        <div class="contact-actions">
           <CopyEmailButton client:load email={profile.email} />
-          <div class="cta-row">
-            <a class="btn btn-primary" href={`mailto:${profile.email}`}>Send an email</a>
-            <a class="btn btn-ghost" href={`https://${profile.linkedin}`} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </div>
+          <a class="btn btn-primary" href={`mailto:${profile.email}`}>Send email</a>
+          <a class="btn btn-ghost" href={`https://${profile.linkedin}`} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <span>(c) {new Date().getFullYear()} {profile.name}</span>
-        <span class="muted">Built with Astro - UI Craft Lab theme</span>
-        <span class="muted">Deploy-ready for GitHub Pages</span>
-      </div>
+    <div class="container footer-grid">
+      <span>(c) {new Date().getFullYear()} {profile.name}</span>
+      <span class="muted">Studio Console theme</span>
+      <span class="muted">Built with Astro</span>
     </div>
   </footer>
 
-  <AccessibilityInspector client:load />
   <CommandPalette client:load actions={commandActions} />
+  <AccessibilityInspector client:load />
 </BaseLayout>

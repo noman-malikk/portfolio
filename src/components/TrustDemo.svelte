@@ -125,12 +125,14 @@
     display: grid;
     gap: 20px;
     margin-top: 20px;
+    min-width: 0;
   }
 
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     gap: 16px;
+    min-width: 0;
   }
 
   .step {
@@ -149,6 +151,8 @@
 
   input,
   select {
+    width: 100%;
+    min-width: 0;
     padding: 8px 10px;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -177,6 +181,7 @@
     background: rgba(15, 118, 110, 0.12);
     font-size: 0.85rem;
     color: #0b4f4b;
+    overflow-wrap: anywhere;
   }
 
   .verification {
@@ -190,6 +195,7 @@
     max-height: 260px;
     overflow: auto;
     padding-right: 6px;
+    min-width: 0;
   }
 
   .block {
@@ -202,11 +208,16 @@
   }
 
   .block-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 10px;
     font-size: 0.75rem;
     color: #5f5a52;
+  }
+
+  .hash {
+    text-align: right;
+    overflow-wrap: anywhere;
   }
 
   .action {
@@ -218,6 +229,7 @@
   .meta {
     margin: 0;
     font-size: 0.8rem;
+    overflow-wrap: anywhere;
     color: #5f5a52;
   }
 

@@ -40,8 +40,9 @@
 <style>
   .clusters {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: 16px;
+    min-width: 0;
   }
 
   .cluster {
@@ -53,6 +54,7 @@
     cursor: pointer;
     display: grid;
     gap: 12px;
+    min-width: 0;
   }
 
   .cluster-head {
@@ -60,6 +62,12 @@
     justify-content: space-between;
     gap: 12px;
     font-weight: 600;
+    min-width: 0;
+  }
+
+  .cluster-head span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .hint {

@@ -95,6 +95,7 @@
   .sandbox {
     display: grid;
     gap: 16px;
+    min-width: 0;
   }
 
   .controls {
@@ -103,15 +104,18 @@
     gap: 10px 16px;
     font-size: 0.85rem;
     align-items: center;
+    min-width: 0;
   }
 
   label {
     display: flex;
     align-items: center;
     gap: 6px;
+    min-width: 0;
   }
 
   select {
+    min-width: 0;
     padding: 6px 10px;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -127,6 +131,7 @@
     border-radius: 14px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     background: #ffffff;
+    min-width: 0;
   }
 
   .sample {
@@ -180,6 +185,7 @@
     gap: 12px;
     font-size: 0.85rem;
     color: #5f5a52;
+    min-width: 0;
   }
 
   pre {
@@ -188,6 +194,18 @@
     border-radius: 10px;
     font-size: 0.75rem;
     overflow-x: auto;
+    max-width: 100%;
+  }
+
+  @media (max-width: 520px) {
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    label {
+      justify-content: space-between;
+    }
   }
 
   .is-hover {
